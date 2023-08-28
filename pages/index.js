@@ -21,11 +21,33 @@ const Dummy_Meetup=[
         
     }
 ]
-function HomePage(){
+function HomePage(props){
+  
     return <Fragment>
         
-       <MeetupList meetups={Dummy_Meetup}/>
+       <MeetupList meetups={props.meetups}/>
     </Fragment>
    
 }
+
+// export async function getServerSideProps(context){
+//     const req=context.req;
+//     const res=context.res;
+
+//     return{
+//         props:{
+//             meetups:Dummy_Meetup
+//         }
+//     }
+// }
+
+export async function getStaticProps(){
+    //fetching data
+    return{
+    props:{
+      meetups: Dummy_Meetup
+    },
+    revalidate: 1
+    };
+  }
 export default HomePage;
